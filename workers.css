@@ -1,0 +1,22 @@
+.page-container {
+    height: 100%;
+    width: 100%;
+}
+.color-element {
+	display: inline-block;
+    height: 20px;
+    width: 19px;
+	margin-bottom: -5px;
+}
+.left-content , .right-content{
+	float: left;
+    height: 100%;
+    width: 49%;
+}
+.dynamic-color-container {
+    border: 1px dashed #000000;
+    float: right;
+    height: 20px;
+	margin-right: 17px;
+    width: 57%;
+}

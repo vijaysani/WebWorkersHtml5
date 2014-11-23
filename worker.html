@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Workers Html5 example</title>
+<link rel="stylesheet" type="text/css" href="workers.css"/>
+</head>
+<body>
+<div class="page-container">
+		<div class="left-content">
+				<button class="left-button" onclick="startWorker(this)"> Colors example1 start </button>
+				<button onclick="stopWorker1()">Stop</button>
+				<div class="dynamic-color-container"></div>
+				<div class="result"></div>
+		</div>
+		<div class="right-content">
+				<button class="right-button" onclick="startWorker(this)">Colors example2 start</button>
+				<button onclick="stopWorker2()">Stop</button>
+				<div class="dynamic-color-container"></div>
+				<div class="result"></div>
+		</div>
+</div>
+<script>
+	var x,w,z;
+
+	function startWorker(obj){
+			z=obj;
+			if(typeof(Worker)!=="undefined"){
+					if(typeof(w)=="undefined"){
+							if(obj.getAttribute("class")=="left-button") {
+									w=new Worker("workerThread1.js");
+									 w.onmessage = function(event){ newColorElement(event,obj); };
+							}
+					}
+					if(typeof(x)=="undefined"){
+							if(obj.getAttribute("class")=="right-button") {
+									x=new Worker("workerThread2.js");
+									 x.onmessage = function(event){ newColorElement(event,obj);};
+							}
+					}
+							 
+			}
+			else {
+				  //document.getElementByID("result").innerHTML="Sorry, your browser does not support Web Workers...";
+			}
+	}
+
+	function newColorElement(event1,object2){
+			var spantags= document.createElement("div");
+			spantags.className="color-element";
+			//spantags.innerHTML=event1.data;
+			spantags.style.backgroundColor=event1.data;
+			object2.nextElementSibling.nextElementSibling.style.backgroundColor=event1.data;
+			object2.nextElementSibling.nextElementSibling.innerHTML=event1.data;
+			object2.nextElementSibling.nextElementSibling.nextElementSibling.appendChild(spantags);
+	}
+	function stopWorker1(){ 
+			w.terminate();
+	}
+	function stopWorker2(){ 
+			sx.terminate();
+	}
+</script>
+</body>
+</html>
