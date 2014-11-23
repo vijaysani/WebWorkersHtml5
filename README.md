@@ -1,6 +1,6 @@
 WebWorkersHtml5
 ===============
-Testing Web Workers efficiency by using simple program and running it 16 million times to see any if browser crashes. 
+Testing Web Workers efficiency by using simple program and running it 16 million times to see if browser crashes. 
 
 Problem : Consider an example where in I'm running a program having complex computations on the client side, the chances of your 
 browser becoming unresponsive are very high and might eventualy crash your browser .
